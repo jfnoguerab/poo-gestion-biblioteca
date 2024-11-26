@@ -84,6 +84,18 @@ public class Application {
         MenuUtility.header("Agregar un libro");
         // Imprimimos todos los empleados registrados
 
+        // Solicitamos los datos
+        String titulo = MenuUtility.solicitarCadena(scanner, "Ingrese el título del libro: ");
+        String autor = MenuUtility.solicitarCadena(scanner, "Ingrese el autor del libro: ");
+        Integer numPaginas = MenuUtility.solicitaNumeroInteger(scanner, "Ingrese el número de páginas: ");
+
+        Libro newLibro = new Libro(titulo, autor, numPaginas);
+
+        // Agregamos el libro a la biblioteca
+        biblioteca.addLibro(newLibro);
+
+        System.out.println("\nEl libro \""+newLibro.getTitulo()+"\" se agregó a la biblioteca exitosamente.");
+
         // Pausar la ejecución del programa hasta que presione ENTER
         ConsoleUtility.waitPressEnterKey(scanner);
     }
