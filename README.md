@@ -52,4 +52,18 @@ Implementa un menú por consola que permite al usuario agregar libros a la bibli
 
 ---
 
+### Actividad - Desarrollo funcionalidades - Segunda Parte:
+
+Debes seguir ampliando el sistema para permitir el préstamo y la devolución de libros. Para esto deberás:
+
+* Agrega el atributo `prestado` a la clase `Libro` para rastrear si un libro está prestado o no.
+
+* Crea la clase `Persona` que represente a un usuario de la biblioteca. Debe contener atributos como `nombre`, `apellido` y una `lista de libros` que ha pedido prestado.
+
+* Implementa métodos en la clase `Biblioteca` para permitir que una persona tome prestado un libro (marcándolo como prestado) y para devolver un libro (marcándolo como disponible nuevamente).
+
+Mejora el menú de consola para permitir a los usuarios seleccionar opciones para prestar y devolver libros.
+
+---
+
 © 2024 | Desarrollado por [Fernando Noguera](https://www.linkedin.com/in/jfnoguerab/)
