@@ -8,6 +8,8 @@ public class Biblioteca {
     public Biblioteca() {
     }
 
+    
+
     public Libro[] addLibro(Libro libro) {
         if (libro != null) {
             // Si ya existe algún valor en el arreglo entoces aumentamos en 1 el tamaño
@@ -19,5 +21,13 @@ public class Biblioteca {
         }
 
         return libros;
+    }
+
+    public Libro[] getLibros() {
+        return libros;
+    }
+
+    public boolean hasLibros() {
+        return libros != null && libros[0] != null;
     }
 }
