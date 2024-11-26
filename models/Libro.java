@@ -4,6 +4,7 @@ public class Libro extends ItemBiblioteca implements Catalogable {
     private String titulo;
     private String autor;
     private int numeroDePaginas;
+    private boolean prestado;
 
     public Libro() {
     }
@@ -13,6 +14,7 @@ public class Libro extends ItemBiblioteca implements Catalogable {
         this.titulo = titulo;
         this.autor = autor;
         this.numeroDePaginas = numeroDePaginas;
+        this.prestado = false;
     }
 
 
@@ -48,14 +50,25 @@ public class Libro extends ItemBiblioteca implements Catalogable {
 
     @Override
     public void prestar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'prestar'");
+        // Validamos si el libro se encuentra prestado
+        if (isPrestado()){
+            System.out.println("Lo sentimos, el libro \""+titulo+"\" se encuentra prestado.");
+            return;
+        }
+        
+        // Cambiamos el estado de la variable "prestado"
+        setPrestado(true);
     }
 
     @Override
     public void devolver() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'devolver'");
+        // Validamos si el libro no se encuentra prestado
+        if (!isPrestado()) {
+            System.out.println("Lo sentimos, el libro \""+titulo+"\" no se encuentra prestado.");
+            return;
+        }
+        // Cambiamos el estado de la variable "prestado"
+        setPrestado(false);
     }
 
     @Override
@@ -70,6 +83,15 @@ public class Libro extends ItemBiblioteca implements Catalogable {
         System.out.println("Autor: " + this.autor);
         System.out.println("Número de páginas: " + this.numeroDePaginas);
         System.out.println("-------\n");
+    }
+
+
+    public boolean isPrestado() {
+        return prestado;
+    }
+
+    public void setPrestado(boolean prestado) {
+        this.prestado = prestado;
     }
 
 }
