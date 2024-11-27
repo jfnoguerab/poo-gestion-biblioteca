@@ -48,13 +48,14 @@ public class Persona {
         return librosPrestados;
     }
     
-    public Libro[] removeLibroPrestado(Libro libro) {
+    public void removeLibroPrestado(Libro libro) {
         if (libro != null && hasLibrosPrestados()) {
             Integer indexLibro = existElement(libro);
             if (indexLibro != null) {
                 int newSizeLibros = librosPrestados.length - 1;
                 if (newSizeLibros == 0) {
-                    return new Libro[1];
+                    librosPrestados = new Libro[1];
+                    return;
                 }
                 Libro[] newLibros = new Libro[newSizeLibros];
                 for (int i = 0, j = 0; i < librosPrestados.length; i++) {
@@ -63,11 +64,10 @@ public class Persona {
                         j++;
                     }
                 }
-                return newLibros;
+                librosPrestados = newLibros;
+                return;
             }
         }
-
-        return librosPrestados;
     }
 
     // Busca un libro dentro del arreglo de libros
@@ -133,7 +133,27 @@ public class Persona {
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        if (hasLibrosPrestados()) {
+            return """
 
+                [ 
+                    Nombre: %s,
+                    Apellido: %s,
+                    librosPrestados:
+                    %s 
+                ]
+            """.formatted(nombre, apellido, Arrays.toString(librosPrestados));
+        }
+        return """
+
+            [ 
+                Nombre: %s,
+                Apellido: %s,
+                librosPrestados: %s
+            ]
+        """.formatted(nombre, apellido, "Ninguno");
+    }
     
 }

@@ -51,24 +51,19 @@ public class Libro extends ItemBiblioteca implements Catalogable {
     @Override
     public void prestar() {
         // Validamos si el libro se encuentra prestado
-        if (isPrestado()){
-            System.out.println("Lo sentimos, el libro \""+titulo+"\" se encuentra prestado.");
-            return;
+        if (!isPrestado()){
+            // Cambiamos el estado de la variable "prestado"
+            setPrestado(true);
         }
-        
-        // Cambiamos el estado de la variable "prestado"
-        setPrestado(true);
     }
 
     @Override
     public void devolver() {
         // Validamos si el libro no se encuentra prestado
-        if (!isPrestado()) {
-            System.out.println("Lo sentimos, el libro \""+titulo+"\" no se encuentra prestado.");
-            return;
+        if (isPrestado()) {
+            // Cambiamos el estado de la variable "prestado"
+            setPrestado(false);
         }
-        // Cambiamos el estado de la variable "prestado"
-        setPrestado(false);
     }
 
     @Override
@@ -151,6 +146,20 @@ public class Libro extends ItemBiblioteca implements Catalogable {
         if (numeroDePaginas != other.numeroDePaginas)
             return false;
         return true;
+    }
+
+
+    @Override
+    public String toString() {
+        return """
+
+            [
+                Libro: %s
+                Autor: %s
+                Número de páginas: %d
+                Prestado: %s
+            ]
+        """.formatted(titulo, autor, numeroDePaginas, (prestado ? "Sí" : "No"));
     }
 
 }

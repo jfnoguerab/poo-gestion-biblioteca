@@ -18,9 +18,12 @@ public class Biblioteca {
                 // Buscamos la persona en el arreglo de personas
                 Integer indexPersona = existElement(persona);
                 if (indexPersona != null) {
-                    libros[indexLibro].prestar();
-                    if (libros[indexLibro].isPrestado()) {
+                    if (!libros[indexLibro].isPrestado()) {
+                        libros[indexLibro].prestar();
                         personas[indexPersona].addLibroPrestado(libros[indexLibro]);
+                        System.out.println("El libro se presto satisfactoriamente.");
+                    } else {
+                        System.out.println("Lo sentimos, el libro \""+libros[indexLibro].getTitulo()+"\" se encuentra prestado.");
                     }
                 }
             }
@@ -39,9 +42,12 @@ public class Biblioteca {
                 if (indexPersona != null) {
                     // Validamos que el ususario sea el mismo que tenia prestado el libro
                     if (personas[indexPersona].existElement(libro) != null) {
-                        libros[indexLibro].devolver();
-                        if (!libros[indexLibro].isPrestado()) {
+                        if (libros[indexLibro].isPrestado()) {
+                            libros[indexLibro].devolver();
                             personas[indexPersona].removeLibroPrestado(libros[indexLibro]);
+                            System.out.println("El libro se devolvió satisfactoriamente.");
+                        } else {
+                            System.out.println("Lo sentimos, el libro \""+libros[indexLibro].getTitulo()+"\" no se encuentra prestado.");
                         }
                     } else {
                         System.out.println("Lo sentimos, La persona no tiene el libro prestado.");
@@ -113,5 +119,28 @@ public class Biblioteca {
 
     public boolean hasPersonas() {
         return personas != null && personas[0] != null;
+    }
+
+    public void printListLibros() {
+        if (hasLibros()) {
+            for (int i = 0; i < libros.length; i++) {
+                System.out.println((i+1) + ". "+libros[i].getTitulo());
+            }
+        }
+    }
+    
+    public void printListPersonas() {
+        if (hasPersonas()) {
+            for (int i = 0; i < personas.length; i++) {
+                System.out.println((i+1) + ". "+personas[i].getNombre()+" "+personas[i].getApellido());
+            }
+        }
+    }
+
+    public Libro getLibro(int indice) {
+        return libros[indice];
+    }
+    public Persona getPersona(int indice) {
+        return personas[indice];
     }
 }
